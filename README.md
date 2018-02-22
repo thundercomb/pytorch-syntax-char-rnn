@@ -16,6 +16,7 @@ Make sure you have a recent version of Python 2.7
 git clone https://github.com/thundercomb/pytorch-syntax-char-rnn
 cd pytorch-syntax-char-rnn
 pip install spacy numpy tqdm torch 
+python -m spacy download en
 ```
 
 ## Input
