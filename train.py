@@ -111,11 +111,11 @@ def train():
 
     try:
         epoch_progress = tqdm(range(1, epoch_count + 1))
+        best_loss = float('inf')
         for epoch in epoch_progress:
             random_state.shuffle(batches)
 
             batches_progress = tqdm(batches)
-            best_loss = float('inf')
             for batch, batch_tensor in enumerate(batches_progress):
                 if use_cuda:
                     batch_tensor = batch_tensor.cuda()
@@ -144,7 +144,7 @@ def train():
 
                 batches_progress.set_postfix(loss='{:.03f}'.format(loss))
                 if loss < 1.3 and loss == best_loss:
-                    checkpoint_path = os.path.join(args.output_dir, 'checkpoint_')
+                    checkpoint_path = os.path.join(args.output_dir, 'checkpoint_tl_')
                     checkpoint_path = checkpoint_path + str('{:.03f}'.format(loss)) + '.cp'
                     torch.save({
                         'model': model.state_dict(),
@@ -154,7 +154,7 @@ def train():
                     exit()
    
             epoch_progress.set_postfix(loss='{:.03f}'.format(best_loss))
-            checkpoint_path = os.path.join(args.output_dir, 'checkpoint_')
+            checkpoint_path = os.path.join(args.output_dir, 'checkpoint_ep_')
             checkpoint_path = checkpoint_path + str('{:.03f}'.format(loss)) + '.cp'
             torch.save({
                 'model': model.state_dict(),
