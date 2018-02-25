@@ -155,7 +155,7 @@ def train():
                     exit()
    
             epoch_progress.set_postfix(loss='{:.03f}'.format(loss))
-            best_ep_loss = min(best_tl_loss, loss)
+            best_ep_loss = min(best_ep_loss, loss)
             if loss == best_ep_loss:
                 checkpoint_path = os.path.join(args.output_dir, 'checkpoint_ep_')
                 checkpoint_path = checkpoint_path + str('{:.03f}'.format(loss)) + '.cp'
