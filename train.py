@@ -109,9 +109,10 @@ def train():
 
     all_losses = []
 
+    best_ep_loss = float('inf')
     try:
         epoch_progress = tqdm(range(1, epoch_count + 1))
-        best_loss = float('inf')
+        best_tl_loss = float('inf')
         for epoch in epoch_progress:
             random_state.shuffle(batches)
 
@@ -139,11 +140,11 @@ def train():
                 optimizer.step()
 
                 loss = loss.data[0]
-                best_loss = min(best_loss, loss)
+                best_tl_loss = min(best_tl_loss, loss)
                 all_losses.append(loss)
 
                 batches_progress.set_postfix(loss='{:.03f}'.format(loss))
-                if loss < 1.3 and loss == best_loss:
+                if loss < 1.3 and loss == best_tl_loss:
                     checkpoint_path = os.path.join(args.output_dir, 'checkpoint_tl_')
                     checkpoint_path = checkpoint_path + str('{:.03f}'.format(loss)) + '.cp'
                     torch.save({
@@ -153,13 +154,15 @@ def train():
                 if loss < 0:
                     exit()
    
-            epoch_progress.set_postfix(loss='{:.03f}'.format(best_loss))
-            checkpoint_path = os.path.join(args.output_dir, 'checkpoint_ep_')
-            checkpoint_path = checkpoint_path + str('{:.03f}'.format(loss)) + '.cp'
-            torch.save({
-                'model': model.state_dict(),
-                'optimizer': optimizer.state_dict()
-            }, checkpoint_path)
+            epoch_progress.set_postfix(loss='{:.03f}'.format(loss))
+            best_ep_loss = min(best_tl_loss, loss)
+            if loss < 1.3 and loss == best_ep_loss:
+                checkpoint_path = os.path.join(args.output_dir, 'checkpoint_ep_')
+                checkpoint_path = checkpoint_path + str('{:.03f}'.format(loss)) + '.cp'
+                torch.save({
+                    'model': model.state_dict(),
+                    'optimizer': optimizer.state_dict()
+                }, checkpoint_path)
 
     except KeyboardInterrupt:
         pass
