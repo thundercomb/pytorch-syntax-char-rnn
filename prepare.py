@@ -139,10 +139,8 @@ combo_to_char = {}
 cti_length = len(char_to_index)
 combos_text_num = [ 
     # the word's type index followed by space index
-    #[syntax_type_to_index[base_text_dict['type'][i]] + cti_length,char_to_index[char]] if char == ' '
-    [char_to_index[char],syntax_type_to_index[base_text_dict['type'][i]] + cti_length,syntax_type_to_index[base_text_dict['type'][i]] + cti_length] if char == ' '
+    [char_to_index[char],syntax_type_to_index[base_text_dict['type'][i]] + cti_length]
     # character index first, type index second
-    else [char_to_index[char]]
     for i, word in enumerate(base_text_dict['data'])
     for char in ' ' + word ]
 # Now flatten the list
