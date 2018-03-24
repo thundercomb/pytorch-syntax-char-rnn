@@ -78,7 +78,7 @@ def sample(model, prime_combo, predict_len, temperature):
 
 if os.path.exists(args.checkpoint):
     print('Parameters found at {}... loading'.format(args.checkpoint))
-    checkpoint = torch.load(args.checkpoint)
+    checkpoint = torch.load(args.checkpoint, map_location=lambda storage, loc: storage)
 else:
     raise ValueError('File not found: {}'.format(args.checkpoint))
 
