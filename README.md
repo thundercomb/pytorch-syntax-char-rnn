@@ -117,7 +117,7 @@ python2.7 generate.py --input_dir data/austen/ --checkpoint data/austen/checkpoi
 * Add validation loss for comparison to training loss  
 * Estimate parser accuracy for a specific text  
 * Add tests  
-~~* Run on GPUs!~~
+* ~~Run on GPUs!~~
 
 ## Contact
 
