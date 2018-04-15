@@ -26,6 +26,12 @@ Provide a text file as ```original*.txt``` where ```*``` is expandable if there 
 ```
 data/austen/original.txt
 ```
+or
+```
+data/austen/original1.txt
+data/austen/original2.txt
+data/austen/original3.txt
+```
 
 If the file is too large for spaCy to process, split it into separate files at meaningful break points like paragraphs or chapters.
 
