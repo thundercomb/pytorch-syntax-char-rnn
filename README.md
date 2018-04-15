@@ -21,7 +21,7 @@ python -m spacy download en
 
 ## Input
 
-Provide a text file as ```original*.txt``` where ```*``` is expandable if there is to be more than one file, or empty if not. Eg.: 
+Provide a text file(s) as ```original*.txt``` where ```*``` is expandable if there is to be more than one file, or empty if not. Eg.: 
 
 ```
 data/austen/original.txt
@@ -117,7 +117,7 @@ python2.7 generate.py --input_dir data/austen/ --checkpoint data/austen/checkpoi
 * Add validation loss for comparison to training loss  
 * Estimate parser accuracy for a specific text  
 * Add tests  
-* Run on GPUs!  
+~~* Run on GPUs!~~
 
 ## Contact
 
