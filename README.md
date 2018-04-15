@@ -24,7 +24,7 @@ python -m spacy download en
 Provide a text file as ```original*.txt``` where ```*``` is expandable if there is to be more than one file, or empty if not. Eg.: 
 
 ```
-data\austen\original.txt
+data/austen/original.txt
 ```
 
 If the file is too large for spaCy to process, split it into separate files at meaningful break points like paragraphs or chapters.
