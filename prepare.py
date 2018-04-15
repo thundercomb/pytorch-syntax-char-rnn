@@ -138,7 +138,8 @@ combos_text_num = []
 combo_to_char = {}
 cti_length = len(char_to_index)
 combos_text_num = [ 
-    # the word's type index followed by space index
+    # Based on experiments a syntax encoding per char is optimal
+    # Although it means training should double the LSTM memory length
     [char_to_index[char],syntax_type_to_index[base_text_dict['type'][i]] + cti_length]
     # character index first, type index second
     for i, word in enumerate(base_text_dict['data'])
